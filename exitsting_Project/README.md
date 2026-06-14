@@ -1,155 +1,147 @@
+# Feedback_Managment
+
+-------------------------------------------------------------------
+**The "existing_Project folder" app works without ai api need ( was made because sending 
+a csv file with 1000 rows may take time to reply by the ai it may also lag , so i used 
+this rule - based prototype )**
+
 # Customer Feedback Intelligence Dashboard
+## About the Project
 
-## Overview
+Customer Feedback Intelligence Dashboard is a Streamlit-based analytics application that converts raw customer feedback into meaningful business insights.
 
-Customer Feedback Intelligence Dashboard is a Streamlit-based application that transforms raw customer feedback data into actionable business insights.
+The application automatically processes customer comments and performs:
 
-The system automatically cleans customer comments, categorizes issues, analyzes sentiment, assigns priorities, generates summaries, and displays results through an interactive dashboard.
+* Data Cleaning
+* Feedback Categorization
+* Sentiment Analysis
+* Priority Assignment
+* Issue Summarization
+* Interactive Dashboard Visualization
 
----
-
-## Features
-
-- CSV Upload
-- Automated Data Cleaning
-- Sentiment Analysis
-- Issue Categorization
-- Priority Detection
-- Issue Summarization
-- Interactive Dashboard
-- KPI Metrics
-- Export Processed Data
+Users can upload a CSV file containing customer feedback and instantly view analytics through charts, KPIs, filters, and downloadable reports.
 
 ---
 
-## Tech Stack
+## Rule-Based Processing Workflow
 
-Frontend:
-- Streamlit
+The system uses rule-based logic to enrich customer feedback.
 
-Data Processing:
-- Pandas
+### 1. Data Cleaning
 
-Visualization:
-- Plotly
+* Removes null and empty feedback.
+* Removes extra spaces and unwanted characters.
+* Normalizes text for analysis.
 
-Programming Language:
-- Python
+### 2. Category Detection
+
+Feedback is classified into:
+
+* Delivery
+* Billing
+* App Bug
+* Staff/Support
+* Other
+
+Categories are assigned using predefined keywords.
+
+Example:
+
+* "late delivery" → Delivery
+* "refund issue" → Billing
+* "app crashed" → App Bug
+
+### 3. Sentiment Analysis
+
+Sentiment is determined using positive and negative keyword matching.
+
+Output:
+
+* Positive
+* Neutral
+* Negative
+
+### 4. Priority Assignment
+
+Priority is assigned based on issue severity.
+
+Output:
+
+* High
+* Medium
+* Low
+
+Example:
+
+* "payment failed" → High
+* "app slow" → Medium
+* "general feedback" → Low
+
+### 5. Issue Summary Generation
+
+A concise summary is generated from the cleaned feedback for easier review.
 
 ---
 
-## Project Structure
+## Technologies Used
 
-project/
-│
-├── dashboard/
-│   └── app.py
-│
-├── notebooks/
-│   └── QuickCart_POC.ipynb
-│
-├── output/
-│
-└── README.md
-
----
-
-## Installation
-
-Install required packages:
-
-pip install streamlit pandas plotly
+* Python
+* Streamlit
+* Pandas
+* Plotly
 
 ---
 
 ## Running the Application
 
-Navigate to the project root folder:
+### Install Dependencies
 
-cd project
+```bash
+pip install streamlit pandas plotly
+```
 
-Run Streamlit:
+### Start the Dashboard
 
+```bash
 python -m streamlit run dashboard/app.py
+```
 
 or
 
+```bash
 streamlit run dashboard/app.py
+```
+
+### Open in Browser
+
+The application will automatically open at:
+
+```text
+http://localhost:8501
+```
 
 ---
 
-## Input File Format
+## Input
 
-The uploaded CSV should contain a customer feedback column.
+Upload a CSV file containing customer feedback.
 
-Example:
+Required column:
 
-id,timestamp,feedback_text
-1,2025-01-01,"Delivery was delayed by two days"
-2,2025-01-02,"Payment failed but money was deducted"
-
----
-
-## Processing Steps
-
-1. Load Raw CSV
-2. Validate Feedback Records
-3. Clean Text
-4. Remove Invalid Entries
-5. Categorize Feedback
-6. Detect Sentiment
-7. Assign Priority
-8. Generate Issue Summary
-9. Create Dashboard Visualizations
+```text
+feedback_text
+```
 
 ---
 
-## Dashboard Outputs
+## Output
 
-### KPI Cards
-- Total Feedback
-- Categories
-- Negative Sentiment Count
-- High Priority Issues
+The dashboard provides:
 
-### Charts
-- Category Distribution
-- Sentiment Distribution
-- Priority Distribution
-
-### Insights
-- Most Common Category
-- High Priority Issues
-- Sentiment Trends
-
-### Data Table
-- Clean Feedback
-- Category
-- Sentiment
-- Priority
-- Issue Summary
-
----
-
-## Export
-
-Users can download the enriched dataset as a CSV file directly from the dashboard.
-
----
-
-## Future Enhancements
-
-- AI-generated issue summaries
-- AI-generated recommendations
-- Real-time feedback monitoring
-- Trend analysis
-- Database integration
-- API integration
-- User authentication
-
----
-
-## Author
-
-Kumaran M S
-BE Computer Science and Engineering
+* KPI Metrics
+* Category Distribution
+* Sentiment Distribution
+* Priority Distribution
+* Feedback Records Table
+* Downloadable Enriched CSV
+* Summary Insights
